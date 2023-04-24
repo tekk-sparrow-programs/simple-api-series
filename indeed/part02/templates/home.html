@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="static/css/home.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Tekk Sparrow Programs</h1>
+		<h2>Simple API: Indeed Part II</h2>
+		<img src="static/img/profile.jpg" alt="Profile Image" class="profile-image">
+		<div class="code-container">
+			{% if code is none %}
+			<h1>Howdy!!! Stranger. Try logging in first!</h1>
+			{% else %}
+			<h1>Does your OAuth session object have a token?
+				{% if not token %}
+				Nope</h1>
+				<h2>Maybe try loggin in first???</h2>
+				{% else %}
+				<h1>Yup!</h1>
+				<p>{{token}}</p>
+				{% endif %}
+			{% endif %}
+		</div>
+
+		<div class="buttons-container">
+			<button id="login-btn">Login</button>
+			<button id="api-call-btn" {% if not tokenLoaded %}disabled{% endif %}>Make API Call</button>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('login-btn').onclick = function () {
+			location.href = '/login';
+		};
+	</script>
+</body>
+
+</html>

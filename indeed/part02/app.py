@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, render_template, url_for
+from flask import Flask, redirect, request, render_template, url_for, session
 from requests_oauthlib import OAuth2Session
 from dotenv import load_dotenv
 import os
@@ -8,16 +8,15 @@ app = Flask(__name__)
 # Load the configuration variables from the .env file
 load_dotenv()
 
+# Encrypt the session object
+app.secret_key = os.getenv("SECRET_KEY")
+
 
 @app.route("/")
 def home():
-    token = request.args.get("token")
-    tokenLoaded = (
-        True if token else False
-    )
-    print(token)
-
-    return render_template("home.html", token=token)
+    token = session.get("token")
+    user_info = session.get("user_info")
+    return render_template("home.html", token=token, user_info=user_info)
 
 
 @app.route("/login")
@@ -52,8 +51,26 @@ def callback():
         code=code,
     )
 
+    # Store the token in the session object
+    session["token"] = token
+
     # Send the user back to the home page
-    return redirect(url_for("home", token=token, tokenLoaded=True))
+    return redirect(url_for("home"))
+
+@app.route("/getUserInfo")
+def get_user_info():
+    # Get token from session
+    token = session.get("token")
+    if not token:
+        return redirect(url_for("login"))
+
+    # Create OAuth2Session object and call protected resource
+    oauth_session = OAuth2Session(
+        client_id=os.getenv("CLIENT_ID"),
+        token=token
+    )
+    session["user_info"] = oauth_session.get(os.getenv("GET_USER_INFO_ENDPOINT")).json()
+    return redirect(url_for("home"))
 
     # # Get the authorization code from the query parameters
     # code = request.args.get('code')

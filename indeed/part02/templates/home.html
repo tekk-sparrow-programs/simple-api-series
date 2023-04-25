@@ -26,8 +26,19 @@
 
 		<div class="buttons-container">
 			<button id="login-btn">Login</button>
-			<button id="api-call-btn" {% if not token %}disabled{% endif %}>Make API Call</button>
+			<button id="api-call-btn" {% if not token %}disabled{% endif %}>Get User Info</button>
 		</div>
+
+		{% if user_info %}
+		<div class="user-info-container">
+			<h1 class="user-info-text">
+				{% for key, value in user_info.items() %}
+				{{ key }}: {{ value }}<br>
+				{% endfor %}
+			</h1>
+		</div>
+		{% endif %}
+		
 	</div>
 
 	<script>
@@ -35,7 +46,7 @@
 			location.href = '/login';
 		};
 		document.getElementById('api-call-btn').onclick = function () {
-			location.href = '/api-call';
+			location.href = '/getUserInfo';
 		};
 	</script>
 </body>

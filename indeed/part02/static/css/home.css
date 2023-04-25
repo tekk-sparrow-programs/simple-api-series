@@ -29,16 +29,15 @@ h1 {
     font-size: 300%;
 }
 
-h1::after {
-    content: url('/static/icon/check.svg');
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
-}
-
 h1.auth-text {
     border-radius: 10px;
     background-color: #F7F7F7;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+h1.user-info-text {
+    border-radius: 10px;
     padding: 20px;
     margin-top: 10px;
 }
@@ -96,6 +95,7 @@ button:disabled {
 .code-container {
     padding: 10px;
     text-align: center;
+    width: 70%;
 }
 
 .success {
@@ -106,10 +106,11 @@ button:disabled {
     color: red;
 }
 
-.success-icon {
-    fill: green;
-}
-
-.error-icon {
-    fill: red;
+.user-info-container {
+    background-color: #7e7e7e;
+    color: coral;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
 }

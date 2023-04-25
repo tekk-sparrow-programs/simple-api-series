@@ -14,11 +14,11 @@
 		<div class="code-container">
 			<h1 class="{% if token %}success{% else %}error{% endif %} auth-text">Authentication Status:
 				{% if token %}
-				  Verified
+				Verified
 				{% else %}
-				  Unverified
+				Unverified
 				{% endif %}
-			  </h1>
+			</h1>
 			{% if code is none %}
 			<h1>Howdy!!! Stranger. Try logging in first!</h1>
 			{% endif %}
@@ -38,7 +38,6 @@
 			</h1>
 		</div>
 		{% endif %}
-		
 	</div>
 
 	<script>

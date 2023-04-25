@@ -12,29 +12,30 @@
 		<h2>Simple API: Indeed Part II</h2>
 		<img src="static/img/profile.jpg" alt="Profile Image" class="profile-image">
 		<div class="code-container">
+			<h1 class="{% if token %}success{% else %}error{% endif %} auth-text">Authentication Status:
+				{% if token %}
+				  Verified
+				{% else %}
+				  Unverified
+				{% endif %}
+			  </h1>
 			{% if code is none %}
 			<h1>Howdy!!! Stranger. Try logging in first!</h1>
-			{% else %}
-			<h1>Does your OAuth session object have a token?
-				{% if not token %}
-				Nope</h1>
-				<h2>Maybe try loggin in first???</h2>
-				{% else %}
-				<h1>Yup!</h1>
-				<p>{{token}}</p>
-				{% endif %}
 			{% endif %}
 		</div>
 
 		<div class="buttons-container">
 			<button id="login-btn">Login</button>
-			<button id="api-call-btn" {% if not tokenLoaded %}disabled{% endif %}>Make API Call</button>
+			<button id="api-call-btn" {% if not token %}disabled{% endif %}>Make API Call</button>
 		</div>
 	</div>
 
 	<script>
 		document.getElementById('login-btn').onclick = function () {
 			location.href = '/login';
+		};
+		document.getElementById('api-call-btn').onclick = function () {
+			location.href = '/api-call';
 		};
 	</script>
 </body>

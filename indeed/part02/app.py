@@ -17,9 +17,7 @@ def home():
     )
     print(token)
 
-    return render_template(
-        "home.html", token=token, tokenLoaded=tokenLoaded
-    )
+    return render_template("home.html", token=token)
 
 
 @app.route("/login")
@@ -32,7 +30,7 @@ def login():
     )
 
     # Generate the authorization URL and redirect the user to it
-    authorization_url = oauth_session.authorization_url(os.getenv("AUTH_URL"))[0]
+    authorization_url = oauth_session.authorization_url(os.getenv("AUTHORIZATION_ENDPOINT"))[0]
     return redirect(authorization_url)
 
 
@@ -50,7 +48,7 @@ def callback():
     # Fetch the access token using the authorization code
     token = oauth_session.fetch_token(
         client_secret=os.getenv("CLIENT_SECRET"),
-        token_url=os.getenv("TOKEN_URL"),
+        token_url=os.getenv("TOKEN_ENDPOINT"),
         code=code,
     )
 

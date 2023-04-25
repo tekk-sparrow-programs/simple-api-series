@@ -1,4 +1,9 @@
 # Project/Video Documentation
+## Summary
+Asks
+- automate, no more cuting and pasting
+- how to store data
+
 ## Prerequisites 
 
 ## Registering an Indeed App

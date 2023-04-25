@@ -30,6 +30,7 @@ TOKEN_ENDPOINT=https://apis.indeed.com/oauth/v2/tokens
 GET_USER_INFO_ENDPOINT=https://secure.indeed.com/v2/api/userinfo
 SCOPE=email
 CALLBACK_URL=http://localhost:8000/callback
+SECRET_KEY=some-long-random-secret-string
 ```
 
 ## Setting up the environment

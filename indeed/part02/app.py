@@ -11,6 +11,13 @@ load_dotenv()
 # Encrypt the session object
 app.secret_key = os.getenv("SECRET_KEY")
 
+def create_oauth_session():
+    """Creates an OAuth2Session object with the application's credentials."""
+    return OAuth2Session(
+        client_id=os.getenv("CLIENT_ID"),
+        redirect_uri=os.getenv("CALLBACK_URL"),
+        scope=os.getenv("SCOPE"),
+    )
 
 @app.route("/")
 def home():

@@ -39,11 +39,19 @@ SECRET_KEY=some-long-random-secret-string
 ```
 
 ## Setting up the environment
-Before we should really start coding we should get our environment set up and sync'd with our IDE. To create a virtual environment directory run this command:
+Before we should really start coding we should get our environment set up and sync'd with our IDE. Let's create a couple of dot files to keep our project organized and safe.
+
+`touch .gitignore && touch .env`
+
+Now lets add a few things to our ignore file.
+
+`echo '.env\nvenv' > .gitignore`
+
+Now we are ready to create a virtual environment directory.
 
 `python3 -m venv venv` 
 
-This will create a virtual env directory, which we will point our system to look for any installed dependencies instead of trying to use whatever is in our PATH or globally installed.
+This will create a virtual env directory, which is were we will install all our dependencies. This way we can keep our global installations separate from our project's.
 
 Before we can install anything onto our virtual environment we need to activate it. This is done by running the activate script.
 
@@ -67,4 +75,7 @@ Now in the future when we start with a fresh environment we can reference the `r
 
 That easy!
 
-## Coding the application
+## Running the application
+Once the environment is set up it is as simple as navigating to the root directoy of the project and running:
+
+`python3 app.py`
